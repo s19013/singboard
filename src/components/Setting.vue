@@ -18,6 +18,14 @@ const changeFontColor = debounce((color) => {
 const changeBackgroundColor = debounce((color) => {
   backgroundColor.value = color.hex
 }, 200)
+
+defineExpose({
+  body,
+  fontSize,
+  fontColor,
+  backgroundColor,
+  arrangement
+})
 </script>
 
 <template>
