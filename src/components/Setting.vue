@@ -31,7 +31,7 @@ const changeBackgroundColor = debounce((color) => {
       文字の大きさ
       <label>
         特大
-        <input type="radio" v-model="fontSize" value="veryLarge" />
+        <input type="radio" v-model="fontSize" value="larger" />
       </label>
       <label>
         大
