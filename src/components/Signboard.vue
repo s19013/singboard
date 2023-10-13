@@ -59,6 +59,8 @@ defineExpose({
 
 .right {
   text-align: right;
-  margin-right: 10px;
+  & p {
+    margin-right: 10px;
+  }
 }
 </style>
