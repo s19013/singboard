@@ -18,6 +18,14 @@ const changeFontColor = debounce((color) => {
 const changeBackgroundColor = debounce((color) => {
   backgroundColor.value = color.hex
 }, 200)
+
+defineExpose({
+  body,
+  fontSize,
+  fontColor,
+  backgroundColor,
+  arrangement
+})
 </script>
 
 <template>
@@ -31,7 +39,7 @@ const changeBackgroundColor = debounce((color) => {
       文字の大きさ
       <label>
         特大
-        <input type="radio" v-model="fontSize" value="veryLarge" />
+        <input type="radio" v-model="fontSize" value="larger" />
       </label>
       <label>
         大
