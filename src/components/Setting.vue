@@ -53,6 +53,10 @@ defineExpose({
         小
         <input type="radio" v-model="fontSize" value="small" />
       </label>
+      <label>
+        極小
+        <input type="radio" v-model="fontSize" value="smaller" />
+      </label>
     </div>
 
     <div class="fontColor">
