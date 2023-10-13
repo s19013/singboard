@@ -63,4 +63,25 @@ defineExpose({
     margin-right: 10px;
   }
 }
+
+/* とにかく目いっぱい表示させたい */
+.larger {
+  & p {
+  }
+}
+
+.large {
+  & p {
+  }
+}
+
+.medium {
+  & p {
+  }
+}
+
+.small {
+  & p {
+  }
+}
 </style>
