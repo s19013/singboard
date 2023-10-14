@@ -94,6 +94,7 @@ defineExpose({
 
 <style scoped>
 .signboard {
+  height: 97vh;
   background-color: v-bind(backgroundColor);
   & p {
     color: v-bind(fontColor);
