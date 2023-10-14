@@ -36,27 +36,23 @@ defineExpose({
     </div>
 
     <div class="fontSize">
-      文字の大きさ
-      <label>
-        特大
-        <input type="radio" v-model="fontSize" value="larger" />
-      </label>
-      <label>
-        大
-        <input type="radio" v-model="fontSize" value="large" />
-      </label>
-      <label>
-        中
-        <input type="radio" v-model="fontSize" value="middle" />
-      </label>
-      <label>
-        小
-        <input type="radio" v-model="fontSize" value="small" />
-      </label>
-      <label>
-        極小
-        <input type="radio" v-model="fontSize" value="smaller" />
-      </label>
+      <p>文字の大きさ</p>
+      <select v-model="fontSize">
+        <option value="larger">特大</option>
+        <option value="large">大</option>
+        <option value="middle">中</option>
+        <option value="small">小</option>
+        <option value="smaller">極小</option>
+      </select>
+    </div>
+
+    <div class="arrangement">
+      <p>配置</p>
+      <select v-model="arrangement">
+        <option value="center">中央寄せ</option>
+        <option value="left">左寄せ</option>
+        <option value="right">右寄せ</option>
+      </select>
     </div>
 
     <div class="fontColor">
@@ -84,22 +80,6 @@ defineExpose({
           :sucker-hide="true"
           @changeColor="changeBackgroundColor"
         />
-      </label>
-    </div>
-
-    <div class="arrangement">
-      配置
-      <label>
-        中央寄せ
-        <input type="radio" v-model="arrangement" value="center" />
-      </label>
-      <label>
-        左寄せ
-        <input type="radio" v-model="arrangement" value="left" />
-      </label>
-      <label>
-        右寄せ
-        <input type="radio" v-model="arrangement" value="right" />
       </label>
     </div>
   </div>
