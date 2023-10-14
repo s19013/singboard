@@ -12,6 +12,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@jamescoyle/vue-icon": "^0.1.2",
+    "@mdi/js": "^7.3.67",
     "lodash": "^4.17.21",
     "vue": "^3.3.4",
     "vue-color-kit": "^1.0.6"
