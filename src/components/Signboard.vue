@@ -1,7 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiClose } from '@mdi/js'
 
 // 行ごとにpで囲いたいため配列
 const body = ref(['sample'])
@@ -82,14 +80,13 @@ defineExpose({
 </script>
 
 <template>
-  <div class="signboard" :class="[arrangement, fontSize]">
+  <div class="signboard" :class="arrangement">
     <button @click="emit('stopExecution')">
-      <svg-icon type="mdi" :path="mdiClose"></svg-icon>
-      停止
+      <p>✕ 停止</p>
     </button>
     <!-- <p>{{ encodeURI(body) }}</p> -->
     <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
-    <p v-for="line in body" :key="line">
+    <p v-for="line in body" :key="line" :class="fontSize">
       {{ line }}
     </p>
   </div>
@@ -104,6 +101,10 @@ defineExpose({
   }
 }
 
+button {
+  display: flex;
+}
+
 .center {
   text-align: center;
 }
@@ -111,46 +112,36 @@ defineExpose({
 .left {
   text-align: left;
   & p {
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 }
 
 .right {
   text-align: right;
   & p {
-    margin-right: 10px;
+    margin-right: 1rem;
   }
 }
 
 /* とにかく目いっぱい表示させたい */
 .larger {
-  & p {
-    /*  色々ためしたところ + 1したらちょうどよくなった */
-    font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 1));
-  }
+  /*  色々ためしたところ + 1したらちょうどよくなった */
+  font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 1));
 }
 
 .large {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 1.5));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 1.5));
 }
 
 .middle {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 2));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 2));
 }
 
 .small {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 3));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 3));
 }
 
 .smaller {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 4));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 4));
 }
 </style>
