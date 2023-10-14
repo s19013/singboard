@@ -1,5 +1,7 @@
 <script setup>
 import { ref } from 'vue'
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiClose } from '@mdi/js'
 
 // 行ごとにpで囲いたいため配列
 const body = ref(['sample'])
@@ -72,6 +74,8 @@ const calculateHalfWidthAndFullWidthCharacters = (arg) => {
   return count
 }
 
+const emit = defineEmits(['stopExecution'])
+
 defineExpose({
   setConfig
 })
@@ -79,6 +83,10 @@ defineExpose({
 
 <template>
   <div class="signboard" :class="[arrangement, fontSize]">
+    <button @click="emit('stopExecution')">
+      <svg-icon type="mdi" :path="mdiClose"></svg-icon>
+      停止
+    </button>
     <!-- <p>{{ encodeURI(body) }}</p> -->
     <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
     <p v-for="line in body" :key="line">
