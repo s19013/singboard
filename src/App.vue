@@ -18,14 +18,19 @@ const execution = () => {
     arrangement: settingComponent.value.arrangement
   })
 }
+
+const stopExecution = () => {
+  executing.value = false
+}
 </script>
 
 <template>
   <header></header>
 
   <main>
-    <button @click="execution">表示</button>
-    <Signboard ref="signboardComponent" />
+    <Signboard v-show="executing" ref="signboardComponent" @stopExecution="stopExecution" />
+
+    <button v-show="!executing" @click="execution">表示</button>
     <Setting v-show="!executing" ref="settingComponent" />
   </main>
 </template>
