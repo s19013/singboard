@@ -43,29 +43,20 @@ const findTheLongestCharacter = (array) => {
 
 // 文字を半角､全角で値を変えて数える
 const calculateHalfWidthAndFullWidthCharacters = (arg) => {
-  // encodeURIはUTF-8文字エンコーディングする
-  // abcなどのアルファベット,数字,記号はそのまま出力される
-  // 改行コードは[,],半角スペースは[%20]で出力される
-  // 日本語などは[あ] -> [%E3] みたいに出力される
-  // この性質を利用する
-  // ちなみにencodeURIComponentは記号もエンコードするらしい
-
   const splited = [...arg]
   let count = 0.0
 
   // 半角0.6､全角1と数える
   // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
-    const encoded = encodeURI(element)
-
-    if (encoded === '%20') {
-      count += 0.6
-    } else if (encoded.length < 3) {
+    if (element.match(/[ -~]/)) {
       count += 0.6
     } else {
       count += 1
     }
   }
+
+  console.log(count)
 
   return count
 }
@@ -81,10 +72,9 @@ defineExpose({
   <div>
     <button @click="emit('stopExecution')">✕ 停止</button>
     <div class="signboard" :class="arrangement">
-      <!-- <p>{{ encodeURI(body) }}</p> -->
       <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
       <div class="sentence">
-        <p v-for="line in body" :key="line" :class="fontSize">
+        <p v-for="(line, index) in body" :key="index" :class="fontSize">
           {{ line }}
         </p>
       </div>
