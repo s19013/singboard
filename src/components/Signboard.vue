@@ -19,9 +19,7 @@ const setConfig = (optinos) => {
   backgroundColor.value = optinos.backgroundColor
   arrangement.value = optinos.arrangement
 
-  numberOfCharactersInLongestSentence.value = calculateHalfWidthAndFullWidthCharacters(
-    findTheLongestCharacter(body.value)
-  )
+  numberOfCharactersInLongestSentence.value = findTheLongestCharacter(body.value)
 }
 
 // 改行で分けたいので
@@ -31,20 +29,19 @@ const splitBody = (arg) => {
 
 // 一番文字数の多い行を探す
 const findTheLongestCharacter = (array) => {
-  let max = array[0].length
-  let longestSentence = array[0]
+  let max = calculateHalfWidthAndFullWidthCharacters(array[0])
 
   for (const element of array) {
-    if (max < element.length) {
-      max = element.length
-      longestSentence = element
+    const elementLength = calculateHalfWidthAndFullWidthCharacters(element)
+    if (max < elementLength) {
+      max = elementLength
     }
   }
 
-  return longestSentence
+  return max
 }
 
-// 一番長い文字数を半角､全角で値を変えて数える
+// 文字を半角､全角で値を変えて数える
 const calculateHalfWidthAndFullWidthCharacters = (arg) => {
   // encodeURIはUTF-8文字エンコーディングする
   // abcなどのアルファベット,数字,記号はそのまま出力される
@@ -56,14 +53,15 @@ const calculateHalfWidthAndFullWidthCharacters = (arg) => {
   const splited = [...arg]
   let count = 0.0
 
-  // 半角0.5､全角1と数える
+  // 半角0.6､全角1と数える
+  // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
     const encoded = encodeURI(element)
 
     if (encoded === '%20') {
-      count += 0.5
+      count += 0.6
     } else if (encoded.length < 3) {
-      count += 0.5
+      count += 0.6
     } else {
       count += 1
     }
@@ -94,7 +92,8 @@ defineExpose({
 
 <style scoped>
 .signboard {
-  height: 100vh;
+  min-height: 100vh;
+  line-height: 1.25;
   background-color: v-bind(backgroundColor);
   & p {
     color: v-bind(fontColor);
@@ -130,23 +129,23 @@ button {
 
 /* とにかく目いっぱい表示させたい */
 .larger {
-  /*  色々ためしたところ + 1したらちょうどよくなった */
-  font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 1));
+  /*  色々ためしたところ + 0.6したらちょうどよくなった */
+  font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 0.5));
 }
 
 .large {
-  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 1.5));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 1.5));
 }
 
 .middle {
-  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 2));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 2));
 }
 
 .small {
-  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 3));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 3));
 }
 
 .smaller {
-  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 4));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 4));
 }
 </style>
