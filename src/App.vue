@@ -15,12 +15,14 @@ const execution = () => {
     fontSize: settingComponent.value.fontSize,
     fontColor: settingComponent.value.fontColor,
     backgroundColor: settingComponent.value.backgroundColor,
-    arrangement: settingComponent.value.arrangement
+    arrangement: settingComponent.value.arrangement,
+    fullScreen: settingComponent.value.fullScreen
   })
 }
 
 const stopExecution = () => {
   executing.value = false
+  document.exitFullscreen()
 }
 </script>
 
@@ -35,4 +37,12 @@ const stopExecution = () => {
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+button {
+  margin: 1rem;
+  width: 25%;
+  @media (max-width: 549px) {
+    width: 100%;
+  }
+}
+</style>
