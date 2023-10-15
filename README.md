@@ -3,6 +3,7 @@
 なぜかストアにあるのはLED点字看板を再現したようなのばかりでシンプルなのが欲しかった｡  
 スマホの落書きアプリを使う方法もあるが､文字が汚くて読めなかったりする  
 訳あって今はアンドロイドスタジオを開けないからwebアプリで代用  
+vitestにリベンジしたい  
 
 # ぶっちゃけ
 紙があるなら紙で良いし  
@@ -14,8 +15,11 @@ webアプリだからダウンロードする手間がない
 ↑  
 これしか利点ない  
 
+# 機能
+
 # 今後
-アンドロイドスタジオで作り直してストアに出す
+アンドロイドスタジオで作り直してストアに出す  
+-> pwaで出す?
 
 # 参考サイト
 [escape()とencodeURI()とencodeURIComponent()の違い](http://site.m-bsys.com/code/javascripr-encodeuri)  
@@ -24,3 +28,4 @@ webアプリだからダウンロードする手間がない
 [JavaScriptで半角を0.5、全角を1で文字数を計算する方法](https://zenn.dev/koojy/articles/javascript-2byte-length)  
 [Sassなしで入れ子が可能に。CSSネストが全ブラウザ対応](https://zenn.dev/moneyforward/articles/css-nesting-without-sass)  
 [javascript 全角文字は2文字で半角文字は1文字としてカウントする](https://mebee.info/2020/12/21/post-26346/)
+[Javascript：文字数を全角/半角別にカウントしてはみ出し処理。](https://fuuno.net/web02/hankaku/hankaku.html)
