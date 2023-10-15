@@ -78,15 +78,17 @@ defineExpose({
 </script>
 
 <template>
-  <div class="signboard" :class="arrangement">
-    <button @click="emit('stopExecution')">
-      <p>✕ 停止</p>
-    </button>
-    <!-- <p>{{ encodeURI(body) }}</p> -->
-    <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
-    <p v-for="line in body" :key="line" :class="fontSize">
-      {{ line }}
-    </p>
+  <div>
+    <button @click="emit('stopExecution')">✕ 停止</button>
+    <div class="signboard" :class="arrangement">
+      <!-- <p>{{ encodeURI(body) }}</p> -->
+      <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
+      <div class="sentence">
+        <p v-for="line in body" :key="line" :class="fontSize">
+          {{ line }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -95,6 +97,11 @@ defineExpose({
   min-height: 100vh;
   line-height: 1.25;
   background-color: v-bind(backgroundColor);
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  & .sentence {
+    grid-row: 2 / 3;
+  }
   & p {
     color: v-bind(fontColor);
     margin: 0px;
