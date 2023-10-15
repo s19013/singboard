@@ -31,76 +31,56 @@ defineExpose({
 <template>
   <div class="Setting">
     <div class="body">
-      <label for="">文字</label>
+      <p>文字</p>
       <textarea v-model="body" name="body" cols="30" rows="5" />
     </div>
 
     <div class="fontSize">
-      文字の大きさ
-      <label>
-        特大
-        <input type="radio" v-model="fontSize" value="larger" />
-      </label>
-      <label>
-        大
-        <input type="radio" v-model="fontSize" value="large" />
-      </label>
-      <label>
-        中
-        <input type="radio" v-model="fontSize" value="middle" />
-      </label>
-      <label>
-        小
-        <input type="radio" v-model="fontSize" value="small" />
-      </label>
-      <label>
-        極小
-        <input type="radio" v-model="fontSize" value="smaller" />
-      </label>
-    </div>
-
-    <div class="fontColor">
-      <label for="">
-        文字の色
-        <div class="fontColorSample"></div>
-        <!-- スポイト機能はなし 実装が面倒-->
-        <ColorPicker
-          theme="light"
-          :color="fontColor"
-          :sucker-hide="true"
-          @changeColor="changeFontColor"
-        />
-      </label>
-    </div>
-
-    <div class="backgroundColor">
-      <label for="">
-        背景の色
-        <div class="backgroundColorSample"></div>
-        <!-- スポイト機能はなし 実装が面倒-->
-        <ColorPicker
-          theme="light"
-          :color="backgroundColor"
-          :sucker-hide="true"
-          @changeColor="changeBackgroundColor"
-        />
-      </label>
+      <p>文字の大きさ</p>
+      <select v-model="fontSize">
+        <option value="larger">特大</option>
+        <option value="large">大</option>
+        <option value="middle">中</option>
+        <option value="small">小</option>
+        <option value="smaller">極小</option>
+      </select>
     </div>
 
     <div class="arrangement">
-      配置
-      <label>
-        中央寄せ
-        <input type="radio" v-model="arrangement" value="center" />
-      </label>
-      <label>
-        左寄せ
-        <input type="radio" v-model="arrangement" value="left" />
-      </label>
-      <label>
-        右寄せ
-        <input type="radio" v-model="arrangement" value="right" />
-      </label>
+      <p>配置</p>
+      <select v-model="arrangement">
+        <option value="center">中央寄せ</option>
+        <option value="left">左寄せ</option>
+        <option value="right">右寄せ</option>
+      </select>
+    </div>
+
+    <div class="fontColor">
+      <div class="labelAndSample">
+        <p>文字の色</p>
+        <p class="fontColorSample" />
+      </div>
+      <!-- スポイト機能はなし 実装が面倒-->
+      <ColorPicker
+        theme="light"
+        :color="fontColor"
+        :sucker-hide="true"
+        @changeColor="changeFontColor"
+      />
+    </div>
+
+    <div class="backgroundColor">
+      <div class="labelAndSample">
+        <p>背景の色</p>
+        <p class="backgroundColorSample" />
+      </div>
+      <!-- スポイト機能はなし 実装が面倒-->
+      <ColorPicker
+        theme="light"
+        :color="backgroundColor"
+        :sucker-hide="true"
+        @changeColor="changeBackgroundColor"
+      />
     </div>
   </div>
 </template>
@@ -116,5 +96,55 @@ defineExpose({
   height: 1rem;
   width: 5rem;
   background-color: v-bind(backgroundColor);
+}
+
+@media (max-width: 549px) {
+  .labelAndSample {
+    display: flex;
+    gap: 1rem;
+  }
+
+  & .fontSize,
+  .arrangement {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+    & p {
+      margin: 0;
+      width: 8rem;
+    }
+  }
+}
+
+@media (min-width: 550px) {
+  & .Setting {
+    & p {
+      margin: 0;
+    }
+  }
+
+  & .body,
+  .fontSize,
+  .arrangement,
+  .fontColor,
+  .backgroundColor {
+    display: flex;
+    margin: 1rem 0;
+  }
+
+  & .body,
+  .fontSize,
+  .arrangement {
+    & p {
+      width: 8rem;
+    }
+  }
+
+  & .fontColor,
+  .backgroundColor {
+    & .labelAndSample {
+      width: 8rem;
+    }
+  }
 }
 </style>

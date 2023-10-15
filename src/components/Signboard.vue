@@ -1,7 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import SvgIcon from '@jamescoyle/vue-icon'
-import { mdiClose } from '@mdi/js'
 
 // 行ごとにpで囲いたいため配列
 const body = ref(['sample'])
@@ -21,9 +19,7 @@ const setConfig = (optinos) => {
   backgroundColor.value = optinos.backgroundColor
   arrangement.value = optinos.arrangement
 
-  numberOfCharactersInLongestSentence.value = calculateHalfWidthAndFullWidthCharacters(
-    findTheLongestCharacter(body.value)
-  )
+  numberOfCharactersInLongestSentence.value = findTheLongestCharacter(body.value)
 }
 
 // 改行で分けたいので
@@ -33,43 +29,34 @@ const splitBody = (arg) => {
 
 // 一番文字数の多い行を探す
 const findTheLongestCharacter = (array) => {
-  let max = array[0].length
-  let longestSentence = array[0]
+  let max = calculateHalfWidthAndFullWidthCharacters(array[0])
 
   for (const element of array) {
-    if (max < element.length) {
-      max = element.length
-      longestSentence = element
+    const elementLength = calculateHalfWidthAndFullWidthCharacters(element)
+    if (max < elementLength) {
+      max = elementLength
     }
   }
 
-  return longestSentence
+  return max
 }
 
-// 一番長い文字数を半角､全角で値を変えて数える
+// 文字を半角､全角で値を変えて数える
 const calculateHalfWidthAndFullWidthCharacters = (arg) => {
-  // encodeURIはUTF-8文字エンコーディングする
-  // abcなどのアルファベット,数字,記号はそのまま出力される
-  // 改行コードは[,],半角スペースは[%20]で出力される
-  // 日本語などは[あ] -> [%E3] みたいに出力される
-  // この性質を利用する
-  // ちなみにencodeURIComponentは記号もエンコードするらしい
-
   const splited = [...arg]
   let count = 0.0
 
-  // 半角0.5､全角1と数える
+  // 半角0.6､全角1と数える
+  // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
-    const encoded = encodeURI(element)
-
-    if (encoded === '%20') {
-      count += 0.5
-    } else if (encoded.length < 3) {
-      count += 0.5
+    if (element.match(/[ -~]/)) {
+      count += 0.6
     } else {
       count += 1
     }
   }
+
+  console.log(count)
 
   return count
 }
@@ -82,26 +69,41 @@ defineExpose({
 </script>
 
 <template>
-  <div class="signboard" :class="[arrangement, fontSize]">
-    <button @click="emit('stopExecution')">
-      <svg-icon type="mdi" :path="mdiClose"></svg-icon>
-      停止
-    </button>
-    <!-- <p>{{ encodeURI(body) }}</p> -->
-    <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
-    <p v-for="line in body" :key="line">
-      {{ line }}
-    </p>
+  <div>
+    <button @click="emit('stopExecution')">✕ 停止</button>
+    <div class="signboard" :class="arrangement">
+      <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
+      <div class="sentence">
+        <p v-for="(line, index) in body" :key="index" :class="fontSize">
+          {{ line }}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .signboard {
+  min-height: 100vh;
+  line-height: 1.25;
   background-color: v-bind(backgroundColor);
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  & .sentence {
+    grid-row: 2 / 3;
+  }
   & p {
     color: v-bind(fontColor);
     margin: 0px;
   }
+}
+
+button {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
 }
 
 .center {
@@ -111,46 +113,36 @@ defineExpose({
 .left {
   text-align: left;
   & p {
-    margin-left: 10px;
+    margin-left: 1rem;
   }
 }
 
 .right {
   text-align: right;
   & p {
-    margin-right: 10px;
+    margin-right: 1rem;
   }
 }
 
 /* とにかく目いっぱい表示させたい */
 .larger {
-  & p {
-    /*  色々ためしたところ + 1したらちょうどよくなった */
-    font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 1));
-  }
+  /*  色々ためしたところ + 0.6したらちょうどよくなった */
+  font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 0.5));
 }
 
 .large {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 1.5));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 1.5));
 }
 
 .middle {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 2));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 2));
 }
 
 .small {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 3));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 3));
 }
 
 .smaller {
-  & p {
-    font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence + 1) * 4));
-  }
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 4));
 }
 </style>
