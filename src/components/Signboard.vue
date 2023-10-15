@@ -49,6 +49,7 @@ const calculateHalfWidthAndFullWidthCharacters = (arg) => {
   // 半角0.6､全角1と数える
   // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
+    // この正規表現で半角と判別できるらしい
     if (element.match(/[ -~]/)) {
       count += 0.6
     } else {
