@@ -7,6 +7,7 @@ const fontSize = ref('middle')
 const fontColor = ref('#000000')
 const backgroundColor = ref('#E9E9E9')
 const arrangement = ref('center')
+const fullScreen = ref(false)
 
 // 一番長い行の文字数
 const numberOfCharactersInLongestSentence = ref(0.0)
@@ -18,8 +19,17 @@ const setConfig = (optinos) => {
   fontColor.value = optinos.fontColor
   backgroundColor.value = optinos.backgroundColor
   arrangement.value = optinos.arrangement
+  fullScreen.value = optinos.fullScreen
 
   numberOfCharactersInLongestSentence.value = findTheLongestCharacter(body.value)
+
+  if (fullScreen.value) {
+    executionFullScreen()
+  }
+}
+
+const executionFullScreen = () => {
+  document.documentElement.requestFullscreen()
 }
 
 // 改行で分けたいので
