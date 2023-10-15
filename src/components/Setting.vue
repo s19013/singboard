@@ -9,6 +9,7 @@ const fontSize = ref('middle')
 const fontColor = ref('#000000')
 const backgroundColor = ref('#E9E9E9')
 const arrangement = ref('center')
+const fullScreen = ref(false)
 
 // vue-color-kit関係
 const changeFontColor = debounce((color) => {
@@ -24,12 +25,20 @@ defineExpose({
   fontSize,
   fontColor,
   backgroundColor,
-  arrangement
+  arrangement,
+  fullScreen
 })
 </script>
 
 <template>
   <div class="Setting">
+    <div class="fullscreen">
+      <label for="fullscreenCheck">
+        <p>フルスクリーン</p>
+      </label>
+      <input id="fullscreenCheck" type="checkbox" v-model="fullScreen" />
+    </div>
+
     <div class="body">
       <p>文字</p>
       <textarea v-model="body" name="body" cols="30" rows="5" />
@@ -98,6 +107,10 @@ defineExpose({
   background-color: v-bind(backgroundColor);
 }
 
+.Setting {
+  margin: 1rem;
+}
+
 @media (max-width: 549px) {
   .labelAndSample {
     display: flex;
@@ -123,7 +136,8 @@ defineExpose({
     }
   }
 
-  & .body,
+  & .fullscreen,
+  .body,
   .fontSize,
   .arrangement,
   .fontColor,
@@ -132,7 +146,8 @@ defineExpose({
     margin: 1rem 0;
   }
 
-  & .body,
+  & .fullscreen,
+  .body,
   .fontSize,
   .arrangement {
     & p {
