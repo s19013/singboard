@@ -56,20 +56,19 @@ const calculateHalfWidthAndFullWidthCharacters = (line) => {
   const splited = [...line]
   let count = 0.0
 
-  // 半角0.6､全角1と数える
+  // 小数の計算だと誤差が発生するため
+  // 半角6､全角10と数えた後に10で割る
   // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
     // この正規表現で半角と判別できるらしい
     if (element.match(/[ -~]/)) {
-      count += 0.6
+      count += 6
     } else {
-      count += 1
+      count += 10
     }
   }
 
-  console.log(count)
-
-  return count
+  return count / 10
 }
 
 const emit = defineEmits(['stopExecution'])
