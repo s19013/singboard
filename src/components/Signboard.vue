@@ -33,8 +33,8 @@ const executionFullScreen = () => {
 }
 
 // 改行で分けたいので
-const splitBody = (arg) => {
-  return arg.split(/\r\n|\n|\r/)
+const splitBody = (sentence) => {
+  return sentence.split(/\r\n|\n|\r/)
 }
 
 // 一番文字数の多い行を探す
@@ -52,8 +52,8 @@ const findTheLongestCharacter = (array) => {
 }
 
 // 文字を半角､全角で値を変えて数える
-const calculateHalfWidthAndFullWidthCharacters = (arg) => {
-  const splited = [...arg]
+const calculateHalfWidthAndFullWidthCharacters = (line) => {
+  const splited = [...line]
   let count = 0.0
 
   // 半角0.6､全角1と数える
