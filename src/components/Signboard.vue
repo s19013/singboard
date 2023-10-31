@@ -137,11 +137,11 @@ button {
 /* とにかく目いっぱい表示させたい */
 .larger {
   /*  色々ためしたところ + 0.6したらちょうどよくなった */
-  font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 0.5));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence * 10 + 5) / 10));
 }
 
 .large {
-  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 1.5));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 15 / 10));
 }
 
 .middle {
