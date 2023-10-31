@@ -37,7 +37,7 @@ const splitBody = (sentence) => {
   return sentence.split(/\r\n|\n|\r/)
 }
 
-// 一番文字数の多い行を探す
+// 一番文字数の多い行を探してその行の文字数を数える
 const findTheLongestCharacter = (array) => {
   let max = calculateHalfWidthAndFullWidthCharacters(array[0])
 
