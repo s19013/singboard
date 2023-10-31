@@ -56,7 +56,7 @@ const calculateHalfWidthAndFullWidthCharacters = (line) => {
   const splited = [...line]
   let count = 0.0
 
-  // 小数の計算だと誤差が発生するため
+  // 小数の計算だと誤差が発生するため -> 後で小数を使いたい
   // 半角6､全角10と数えた後に10で割る
   // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
