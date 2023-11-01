@@ -14,12 +14,12 @@ const numberOfCharactersInLongestSentence = ref(0.0)
 
 //
 const setConfig = (optinos) => {
-  body.value = splitBody(optinos.body)
-  fontSize.value = optinos.fontSize
-  fontColor.value = optinos.fontColor
-  backgroundColor.value = optinos.backgroundColor
-  arrangement.value = optinos.arrangement
-  fullScreen.value = optinos.fullScreen
+  body.value = splitBody(optinos.body ?? 'sample')
+  fontSize.value = optinos.fontSize ?? 'middle'
+  fontColor.value = optinos.fontColor ?? '#000000'
+  backgroundColor.value = optinos.backgroundColor ?? '#E9E9E9'
+  arrangement.value = optinos.arrangement ?? 'center'
+  fullScreen.value = optinos.fullScreen ?? false
 
   numberOfCharactersInLongestSentence.value = findTheLongestCharacter(body.value)
 
