@@ -14,12 +14,12 @@ const numberOfCharactersInLongestSentence = ref(0.0)
 
 //
 const setConfig = (optinos) => {
-  body.value = splitBody(optinos.body)
-  fontSize.value = optinos.fontSize
-  fontColor.value = optinos.fontColor
-  backgroundColor.value = optinos.backgroundColor
-  arrangement.value = optinos.arrangement
-  fullScreen.value = optinos.fullScreen
+  body.value = splitBody(optinos.body ?? 'sample')
+  fontSize.value = optinos.fontSize ?? 'middle'
+  fontColor.value = optinos.fontColor ?? '#000000'
+  backgroundColor.value = optinos.backgroundColor ?? '#E9E9E9'
+  arrangement.value = optinos.arrangement ?? 'center'
+  fullScreen.value = optinos.fullScreen ?? false
 
   numberOfCharactersInLongestSentence.value = findTheLongestCharacter(body.value)
 
@@ -33,11 +33,11 @@ const executionFullScreen = () => {
 }
 
 // 改行で分けたいので
-const splitBody = (arg) => {
-  return arg.split(/\r\n|\n|\r/)
+const splitBody = (sentence) => {
+  return sentence.split(/\r\n|\n|\r/)
 }
 
-// 一番文字数の多い行を探す
+// 一番文字数の多い行を探してその行の文字数を数える
 const findTheLongestCharacter = (array) => {
   let max = calculateHalfWidthAndFullWidthCharacters(array[0])
 
@@ -52,24 +52,23 @@ const findTheLongestCharacter = (array) => {
 }
 
 // 文字を半角､全角で値を変えて数える
-const calculateHalfWidthAndFullWidthCharacters = (arg) => {
-  const splited = [...arg]
+const calculateHalfWidthAndFullWidthCharacters = (line) => {
+  const splited = [...line]
   let count = 0.0
 
-  // 半角0.6､全角1と数える
+  // 小数の計算だと誤差が発生するため -> 後でcss周りで小数を使いたい
+  // 半角6､全角10と数えた後に10で割る
   // 色々ためしたところこれがちょうど良いので
   for (const element of splited) {
     // この正規表現で半角と判別できるらしい
     if (element.match(/[ -~]/)) {
-      count += 0.6
+      count += 6
     } else {
-      count += 1
+      count += 10
     }
   }
 
-  console.log(count)
-
-  return count
+  return count / 10
 }
 
 const emit = defineEmits(['stopExecution'])
@@ -138,11 +137,11 @@ button {
 /* とにかく目いっぱい表示させたい */
 .larger {
   /*  色々ためしたところ + 0.6したらちょうどよくなった */
-  font-size: calc(100vw / v-bind(numberOfCharactersInLongestSentence + 0.5));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence * 10 + 5) / 10));
 }
 
 .large {
-  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 1.5));
+  font-size: calc(100vw / v-bind((numberOfCharactersInLongestSentence) * 15 / 10));
 }
 
 .middle {

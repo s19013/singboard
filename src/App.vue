@@ -22,7 +22,14 @@ const execution = () => {
 
 const stopExecution = () => {
   executing.value = false
-  document.exitFullscreen()
+  // フルスクリーンにしなかった時に
+  // フルスクリーンじゃないからexitFullscreenできませんとエラーが図れる
+  // 別にクラッシュするわけでも無ければ､バグの原因にもならないので方っておいても良いが消せるようなので消しとく
+
+  // フルスクリーンにした要素がnull -> フルスクリーンを実行しなかった｡
+  if (document.fullscreenElement != null) {
+    document.exitFullscreen()
+  }
 }
 </script>
 
