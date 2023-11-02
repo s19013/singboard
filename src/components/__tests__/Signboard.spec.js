@@ -117,6 +117,7 @@ describe('Add class arrangement value', () => {
         'center',
         'right'
     ])('%s',async (arrangement) => {
+        // 更新しきるのを待つためasync await
         const wrapper = mount(Signboard)
         await wrapper.vm.setConfig({
             arrangement: arrangement,
