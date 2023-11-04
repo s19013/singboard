@@ -47,25 +47,18 @@ const config = {
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'Google Chrome',
       use: {
-        ...devices['Desktop Chrome']
-      }
+        channel: 'chrome',
+      },
     },
-    {
-      name: 'firefox',
-      use: {
-        ...devices['Desktop Firefox']
-      }
-    },
-    {
-      name: 'webkit',
-      use: {
-        ...devices['Desktop Safari']
-      }
-    }
-
     /* Test against mobile viewports. */
+    // {
+    //   name: 'chromium',
+    //   use: {
+    //     ...devices['Desktop Chrome']
+    //   }
+    // },
     // {
     //   name: 'Mobile Chrome',
     //   use: {
@@ -87,11 +80,17 @@ const config = {
     //   },
     // },
     // {
-    //   name: 'Google Chrome',
+    //   name: 'firefox',
     //   use: {
-    //     channel: 'chrome',
-    //   },
+    //     ...devices['Desktop Firefox']
+    //   }
     // },
+    // {
+    //   name: 'webkit',
+    //   use: {
+    //     ...devices['Desktop Safari']
+    //   }
+    // }
   ],
 
   /* Folder for test artifacts such as screenshots, videos, traces, etc. */
