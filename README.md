@@ -32,7 +32,6 @@ vitestをしてる時canvas周りでエラーが出たので､参考サイト�
 
 # 気になること
 playwrightでスクショを取って`playwright-report`に保存するように書くと､実行後にスクショが消えてしまう｡  
-`playwright codegen`でキャンバス操作を再現するコードを生成したが､制限されていない｡
 
 # 参考サイト
 [escape()とencodeURI()とencodeURIComponent()の違い](http://site.m-bsys.com/code/javascripr-encodeuri)  
