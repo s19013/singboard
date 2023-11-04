@@ -71,6 +71,7 @@ defineExpose({
       </div>
       <!-- スポイト機能はなし 実装が面倒-->
       <ColorPicker
+        data-testid="fontColorPicker"
         theme="light"
         :color="fontColor"
         :sucker-hide="true"
@@ -85,6 +86,7 @@ defineExpose({
       </div>
       <!-- スポイト機能はなし 実装が面倒-->
       <ColorPicker
+        data-testid="backgroundColorPicker"
         theme="light"
         :color="backgroundColor"
         :sucker-hide="true"
