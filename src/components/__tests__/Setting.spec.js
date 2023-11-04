@@ -39,7 +39,7 @@ describe('fullScreen', () => {
         const wrapper = mount(Setting)
         const check = wrapper.find('input[type="checkbox"]')
 
-        check.setChecked()
+        await check.setChecked()
         await check.setChecked()
         expect(check.element.value).toBeFalsy
         expect(wrapper.vm.fullScreen).toBeFalsy
