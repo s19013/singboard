@@ -7,18 +7,30 @@ test('test', async ({ page }) => {
   await page.locator('div').filter({ hasText: /^文字の大きさ特大大中小極小$/ }).getByRole('combobox').selectOption('larger');
 
   // 再現されていないみたい｡
-  await page.locator('div').filter({ hasText: /^文字の色HEXRGBA$/ }).locator('canvas').first().click({
-    button: 'left',
+  await page.getByTestId('fontColorPicker').locator('canvas').nth(1).click({
     position: {
-      x: 147,
-      y: 74
+      x: 12,
+      y: 54
     }
   });
-  await page.locator('div').filter({ hasText: /^背景の色HEXRGBA$/ }).locator('canvas').first().click({
-    button: 'left',
+  await page.getByTestId('fontColorPicker').locator('canvas').first().click({
     position: {
-      x: 65,
-      y: 9
+      x: 150,
+      y: 95
+    }
+  });
+
+
+  await page.getByTestId('backgroundColorPicker').locator('canvas').nth(1).click({
+    position: {
+      x: 9,
+      y: 52
+    }
+  });
+  await page.getByTestId('backgroundColorPicker').locator('canvas').first().click({
+    position: {
+      x: 28,
+      y: 26
     }
   });
 
