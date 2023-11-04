@@ -38,6 +38,10 @@ vitestをしてる時canvas周りでエラーが出たので､参考サイト�
 [Sassなしで入れ子が可能に。CSSネストが全ブラウザ対応](https://zenn.dev/moneyforward/articles/css-nesting-without-sass)  
 [javascript 全角文字は2文字で半角文字は1文字としてカウントする](https://mebee.info/2020/12/21/post-26346/)
 [Javascript：文字数を全角/半角別にカウントしてはみ出し処理。](https://fuuno.net/web02/hankaku/hankaku.html)
+
+## テスト系
 [.getContext() が実装されていないため、単体テストでエラーが発生する](https://stackoverflow.com/questions/48828759/unit-test-raises-error-because-of-getcontext-is-not-implemented)
 [Vitest キャンバスをモックする方法](https://www.the-koi.com/projects/vitest-how-to-mock-a-canvas/)
 [HTMLCanvasElement: getContext() メソッド](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/getContext)
+[【Playwright 入門】Playwrightで始めるE2Eテスト](https://tech-blog.rakus.co.jp/entry/20230509/playwright)
+[Playwrightを用いてテストを自動化しよう！概要や使い方を解説](https://udemy.benesse.co.jp/development/playwright.html)
