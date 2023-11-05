@@ -40,6 +40,8 @@ test('in a general way', async ({ page }) => {
   // 実行中
   await page.getByRole('button', { name: '表示' }).click();
   await page.screenshot({ path: 'execuing.jpg', fullPage: false });
+
+  // pタグの中にplaywrightTestが表示されれば良いんでけどうまく行かないので今はこれで
   await expect(page.getByText('playwrightTest')).toBeVisible();
 
   // 実行後
