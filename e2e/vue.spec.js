@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('in a general way', async ({ page }) => {
   await page.goto('http://127.0.0.1:5173/singboard');
   await page.locator('textarea[name="body"]').click();
   await page.locator('textarea[name="body"]').fill('playwrightTest');
