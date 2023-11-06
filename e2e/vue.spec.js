@@ -41,9 +41,7 @@ test('in a general way', async ({ page }) => {
   await page.getByRole('button', { name: '表示' }).click();
   await page.screenshot({ path: 'execuing.jpg', fullPage: false });
 
-  // pタグの中にplaywrightTestが表示されれば良いんでけどうまく行かないので今はこれで
-  // playwirghtTestという名前で要素が取得できるかでテストしてる
-  await expect(page.getByText('playwrightTest')).toBeVisible();
+  await expect(page.getByText('playwrightTest', { exact: true })).toBeVisible();
 
   // 実行後
   await page.getByRole('button', { name: '✕ 停止' }).click();
