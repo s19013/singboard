@@ -31,7 +31,7 @@ defineExpose({
 </script>
 
 <template>
-  <div class="Setting">
+  <div class="Setting" data-testid="Setting">
     <div class="fullscreen">
       <label for="fullscreenCheck">
         <p>フルスクリーン</p>

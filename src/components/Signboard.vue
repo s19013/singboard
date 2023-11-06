@@ -79,7 +79,7 @@ defineExpose({
 </script>
 
 <template>
-  <div>
+  <div data-testid="Singboard">
     <button @click="emit('stopExecution')">✕ 停止</button>
     <div class="signboard" :class="arrangement">
       <!-- <p>{{ numberOfCharactersInLongestSentence }}</p> -->
