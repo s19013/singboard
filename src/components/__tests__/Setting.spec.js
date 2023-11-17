@@ -83,6 +83,7 @@ describe('arrangement',() => {
     })
 
     // 期待:変更した時に､v-modelが更新されているか
+    // test-eachは右記のサイトを参考にhttps://vitest.dev/api/#test-each
     it.each([
         ["center",0],
         ["left",1],
